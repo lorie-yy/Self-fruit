@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="html 前端 js 学习">
+    <meta name="description" content="此网站是汇集前端学习的宝地">
+    <link rel="icon" href="../static/images/html5_logo_512.png">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <title>Sign In</title>
+
+    <style>
+        body {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: rgba(158, 158, 158, 0);
+        }
+
+        .form-signin {
+            max-width: 330px;
+            padding: 15px;
+            margin: 0 auto;
+            margin-bottom: 200px;
+        }
+        .form-signin .form-signin-heading,
+        .form-signin .checkbox {
+            margin-bottom: 10px;
+        }
+        .form-signin .form-signin-heading{
+            text-align: center;
+        }
+        .form-signin .checkbox {
+            font-weight: normal;
+        }
+        .form-signin .form-control {
+            position: relative;
+            height: auto;
+            -webkit-box-sizing: border-box;/*chrome浏览器*/
+            -moz-box-sizing: border-box;/*Firefox浏览器*/
+            box-sizing: border-box;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .form-signin .form-control:focus {
+            z-index: 2;
+        }
+        .form-signin input[type="text"] {
+            margin-bottom: -1px;
+        }
+        .form-signin input[type="password"] {
+            margin-bottom: 10px;
+        }
+        .footer{
+            margin-left: 50px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+         <form class="form-signin" action="" method="post">
+             <h2 class="form-signin-heading"><b>账号登录</b></h2>
+             <div>
+                 <label for="username"></label>
+                 <input type="text" id="username" name="username" class="form-control" placeholder="用户名" required autofocus>
+             </div>
+             <div>
+                 <label for="password"></label>
+                 <input type="password" id="password" name="password" class="form-control" placeholder="密码" required>
+             </div>
+             <div class="checkbox">
+                 <input type="checkbox" id="checkbox" style="margin-left: 0">
+                 <label for="checkbox">记住密码</label>
+             </div>
+             <!--button标签不能跳转页面-->
+             <button class="btn btn-lg btn-info btn-block" id="submit" name="submit" type="submit">登录</button>
+             <a class="btn btn-lg btn-default btn-block" href="validate+date.html">注册</a>
+         </form>
+        <hr/><!--透明脚注线-->
+        <footer class="footer">
+            <p>&copy; 2016 Company  L.Y.</p>
+        </footer>
+    </div><!-- /container -->
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

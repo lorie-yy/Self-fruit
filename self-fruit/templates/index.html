@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><!--兼容IE浏览器-->
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!--自适应网页-->
+    <meta name="keywords" content="html 前端 js 学习">
+    <meta name="description" content="此网站是汇集前端学习的宝地">
+    <link rel="icon" href="../static/images/html5_logo_512.png">
+    <title>index</title>
+
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css"><!--bootstrap响应式布局-->
+    <link rel="stylesheet" href="../static/js/easydialog/easydialog.css"><!--easydialog弹出框-->
+    <link rel="stylesheet" href="../static/css/fonts/fontawesome/css/font-awesome.min.css"><!--fontawesome图标字体-->
+    <link rel="stylesheet" href="../static/css/fonts/linecons/css/linecons.css"><!--linecons图标字体-->
+    <link rel="stylesheet" href="../static/js/swiper/swiper-3.4.2.min.css"><!--swiper轮播-->
+    <link rel="stylesheet" href="../static/js/daterangepicker/daterangepicker.css"><!--日期范围-->
+    <link rel="stylesheet" href="../static/js/datetimepicker/bootstrap-datetimepicker.min.css"><!--日期时间-->
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="../static/css/fonts/fontawesome/css/font-awesome-ie7.min.css">
+    <![endif]-->
+    <link rel="stylesheet" href="../static/css/style.css">
+
+    <script src="../static/js/jquery-3.1.0.min.js"></script><!--jquery库，是其他js文件引用的基础-->
+    <script src="../static/js/validate/jquery.validate.min.js"></script><!--validate表单验证-->
+    <script src="../static/js/validate/messages_zh.js"></script><!--表单验证message中文-->
+    <script src="../static/js/easydialog/easydialog.min.js"></script>
+    <script src="../static/js/swiper/swiper-3.4.2.min.js"></script>
+    <script src="../static/js/daterangepicker/moment.min.js"></script>
+    <script src="../static/js/daterangepicker/daterangepicker.js"></script>
+    <script src="../static/js/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+    <script src="../static/js/xenon-main.js"></script>
+    <script src="../static/js/xenon-dialog.js"></script>
+    <!--page-title时钟-->
+    <script type="text/javascript">
+        function startTime() {
+            var content = $('#search_name').val();
+            $('#result').html(content);
+            setTimeout("startTime()",1000); //计时，每1秒调用一次，一定要放在函数内部调用
+            /*时间*/
+            var today=new Date();
+//            console.log(new Date())
+            var h=today.getHours();
+            var min=today.getMinutes();
+            var s=today.getSeconds();
+            h=checkTime(h);                 //当小时、分钟数、秒数为个位数时前面加上0
+            min=checkTime(min);
+            s=checkTime(s);
+            function checkTime(i) {
+                if(i<10){
+                    i="0"+i;
+                }return i;
+            }
+            document.getElementById("time").innerHTML=h+":"+min+":"+s;
+            /*日期*/
+            var y=today.getFullYear();
+            var mon=today.getMonth()+1;     //月份是以数组的形式储存的[0-11]，所以需要加1
+            var date=today.getDate();
+            document.getElementById("date").innerHTML=y+"年"+mon+"月"+date+"日";
+            /*星期*/
+            var day=new Array(7);           //星期是以阿拉伯数字输出的[0-6]，需要转换成汉字
+            day[0]="星期天";
+            day[1]="星期一";
+            day[2]="星期二";
+            day[3]="星期三";
+            day[4]="星期四";
+            day[5]="星期五";
+            day[6]="星期六";
+            document.getElementById("weekday").innerHTML=day[today.getDay()]
+        }
+    </script>
+    <!--shop_search搜索-->
+    <script>
+        function shop_search(){
+            var search_name = $('#search_name').val();
+            $("#result").html(search_name);
+            console.log(search_name);
+            var btnSn = function( e ){
+            };
+            var btnFn = function () {
+                easyDialog.close();
+            };
+            if(search_name == ''){
+//                easyDialog.open({
+//                    container : {
+//                        header : "搜索",//header：包含弹出层的标题和关闭按钮
+//                        content : "<strong>请输入商铺名称！</strong>（3s后自动关闭...）",//content：包含弹出层的内容
+//                        yesFn : btnSn,//弹出层的脚：确定按钮及回调函数
+//                        noFn : btnFn,//取消按钮，为false时将不显示按钮
+//                        fixed : true//fixed：该参数为true时，弹出窗口为固定定位（跟随页面的滚动而滚动）
+//                    },
+//                    overlay : true,//overlay：该参数为false时，将不显示遮罩层，默认为true
+//                    autoClose : 3000//autoClose：自动关闭窗口，单位为毫秒(ms)
+////                                drag : false//drag：该参数为false时将关闭拖拽的功能
+//
+//                });
+//                $("#easyDialogYesBtn").focus();//将光标聚焦到弹出框的确定按钮上
+//                return false;
+                ConfirmWarning("搜索","请输入商铺名称！",btnSn)
+            }
+            else{
+                $('#shopSearch').submit();//提交表单
+            }
+        }
+        function countDown() {
+            var waitCountdown=3;
+            setTimeout("countDown()",1000);
+            if(waitCountdown=0){
+                waitCountdown=3;
+            }else{
+                waitCountdown--
+            }
+        }
+    </script>
+    <!--goPage分页-->
+</head>
+<body onload="startTime()">
+<!--settings pane顶部隐藏部分-->
+<div class="settings-pane" id="switch_id">
+    <a href="#" class="setting-close" data-toggle="settings-pane" data-animate="true">
+        &times;
+    </a>
+    <div class="settings-pane-inner">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="user-info">
+                    <div class="user-image">
+                        <a href="/adminbd/per_information">
+                            <img src="../static/images/default.png" class="img-responsive img-circle"
+                                 style="max-height:130px; max-width:128px;" alt="user-img"/>
+                        </a>
+                    </div>
+                    <div class="user-details">
+                        <h3>
+                            <a href="/adminbd/per_information">root</a>
+                            <!-- Available statuses: is-online, is-idle, is-busy and is-offline -->
+                            <span class="user-status is-online"></span>
+                        </h3>
+                        <p class="user-title">欢迎root</p>
+                        <div class="user-links">
+                            <a href="/adminbd/per_information" class="btn btn-primary">编辑</a>
+                            <a href="#" class="btn btn-success" data-toggle="settings-pane" data-animate="true">合并</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="link-bcks-env" style="margin-top:40px;float:right;">
+                <span style="font-size:30px;">威非运营管理云平台</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-container">
+    <!-- left menu公共菜单部分 -->
+    <div class="sidebar-menu toggle-others">
+        <div class="sidebar-menu-inner">
+            <header class="logo-env">
+                <!-- logo -->
+                <div class="logo">
+                    <a href="index.html" class="logo-expanded">
+                        <img src="../static/images/logo-zte.png" width="204" alt="" />
+                        <div class="sidebar-menu-inner-omcp" >ZXWL OMCP</div>
+                    </a>
+                </div>
+                <!--setting按钮-->
+                <div class="settings-icon">
+                    <a href="#" data-toggle="settings-pane">
+                        <i class="linecons-cog"></i>
+                    </a>
+                </div>
+            </header>
+            <ul id="main-menu" class="main-menu">
+                <li  id="index" class="active">
+                    <a href="index.html">
+                        <i class="fa fa-home"></i><!--图标-->
+                        <span class="title">主页</span>
+                    </a>
+                </li>
+                <!--商铺-->
+                <li id="2" class="has_sub">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="fa fa-cog"></i>
+                        <span class="title">商铺管理</span>
+                    </a>
+                    <ul class="menu_sub">
+                        <li id="change_password">
+                            <a href="/adminbd/change_password">
+                                <span class="title">密码修改</span>
+                            </a>
+                        </li>
+                        <li id="shop_update">
+                            <a href="/adminbd/shop_update">
+                                <span class="title">资料更新</span>
+                            </a>
+                        </li>
+                        <li id="shop_list" class="admin">
+                            <a href="/adminbd/shop_list">
+                                <span class="title">商铺列表</span>
+                            </a>
+                        </li>
+                        <li id="shopAdmin_list" class="admin">
+                            <a href="/adminbd/shopAdmin_list">
+                                <span class="title">商铺管理员</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!--设备-->
+                <li class="has_sub">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="fa fa-desktop"></i>
+                        <span class="title">设备管理</span>
+                    </a>
+                    <ul class="menu_sub">
+                        <li id="ac_list">
+                            <a href="/adminbd/ac_list">
+                                <span class="title">AC列表</span>
+                            </a>
+                        </li>
+                        <li id="ap_list">
+                            <a href="/adminbd/ap_list" >
+                                <span class="title">AP列表</span>
+                            </a>
+                        </li>
+                        <li id="wifi_list">
+                            <a href="/adminbd/wifi_list" >
+                                <span class="title">热点列表</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!--用户-->
+                <li class="has_sub">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="fa fa-users"></i>
+                        <span class="title">用户管理</span>
+                    </a>
+                    <ul class="menu_sub">
+                        <li id="user_online_list">
+                            <a href="/adminbd/user_online_list">
+                                <span class="title">在线用户列表</span>
+                            </a>
+                        </li>
+                        <li id="user_list">
+                            <a href="/adminbd/user_list">
+                                <span class="title">历史用户列表</span>
+                            </a>
+                        </li>
+                        <li id="shop_user_list">
+                            <a href="/adminbd/shop_user_list">
+                                <span class="title">注册用户列表</span>
+                            </a>
+                        </li>
+                        <li id="shop_user_setup">
+                            <a href="/adminbd/shop_user_setup">
+                                <span class="title">在线用户组设置</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!--系统-->
+                <li class="has_sub">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="fa fa-cogs"></i>
+                        <span class="title">系统设置</span>
+                    </a>
+                    <ul class="menu_sub">
+                        <li class="has_sub">
+                            <a href="#" class="dropdown-toggle">
+                                <span class="title child">认证登录配置</span>
+                            </a>
+                            <ul class="menu_sub sub_sub">
+                                <li id="sms_template_add">
+                                    <a href="/adminbd/sms_template_add">
+                                        <span class="title">短信模板设置</span>
+                                    </a>
+                                </li>
+                                <li id="sms_template_list">
+                                    <a href="/adminbd/sms_template_list">
+                                        <span class="title">短信模板列表</span>
+                                    </a>
+                                </li>
+                                <li id="wechat_set">
+                                    <a href="/adminbd/wechat_set">
+                                        <span class="title">微信认证设置</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <!--分析-->
+                <li class="has_sub">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="fa fa-line-chart"></i>
+                        <span class="title">运营分析</span>
+                    </a>
+                    <ul class="menu_sub">
+                        <li id="data_daily">
+                            <a href="/adminbd/data_daily">
+                                <span class="title">每日流量统计</span>
+                            </a>
+                        </li>
+                        <li id="data_traffic">
+                            <a href="/adminbd/data_traffic">
+                                <span class="title">广告流量统计</span>
+                            </a>
+                        </li>
+                        <li id="data_people">
+                            <a href="/adminbd/data_people">
+                                <span class="title">访客人次统计</span>
+                            </a>
+                        </li>
+                        <li id="data_frequent_customer">
+                            <a href="/adminbd/data_frequent_customer">
+                                <span class="title">熟客统计</span>
+                            </a>
+                        </li>
+                        <li id="data_detail">
+                            <a href="/adminbd/data_detail">
+                                <span class="title">细节指数统计</span>
+                            </a>
+                        </li>
+                        <li id="data_online_time">
+                            <a href="/adminbd/data_online_time">
+                                <span class="title">在线时长统计</span>
+                            </a>
+                        </li>
+                        <li id="data_ad">
+                            <a href="/adminbd/data_ad">
+                                <span class="title">广告统计</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!--商品-->
+                <li class="has_sub">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="fa fa-list"></i>
+                        <span class="title">商品管理</span>
+                    </a>
+                    <ul class="menu_sub">
+                        <li id="product_list">
+                            <a href="/adminbd/product_list">
+                                <span class="title">商品列表</span>
+                            </a>
+                        </li>
+                        <li id="order_list">
+                            <a href="/adminbd/order_list">
+                                <span class="title">订单列表</span>
+                            </a>
+                        </li>
+                        <li id="payment_result">
+                            <a href="/adminbd/payment_result">
+                                <span class="title">消费记录</span>
+                            </a>
+                        </li>
+                        <li id="smsBalance_list">
+                            <a href="/adminbd/smsBalance_list">
+                                <span class="title">短信列表</span>
+                            </a>
+                        </li>
+                        <li id="smsAccounting_list">
+                            <a href="/adminbd/smsAccounting_list">
+                                <span class="title">短信流水列表</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                </ul>
+            </div>
+        <!--菜单底部-->
+        <div style="text-align: center;color: #fff;font-size: 12px;margin-top: 30px;">
+            上海中兴通讯技术股份有限公司版权所有 &copy;2015
+        </div>
+    </div><!--左侧菜单-->
+    <!--right-->
+    <div class="main-content">
+        <!--right top-->
+        <nav class="navbar user-info-navbar">
+            <ul class="user-info-menu">
+                <li class="hiden-sm">
+                    <a href="#" data-toggle="sidebar">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </li>
+            </ul>
+            <form id="change_language_form">
+                <input type="hidden">
+                <select class="change_language">
+                    <option value="en">English</option>
+                    <option value="zh-hans" selected>中文简体</option>
+                </select>
+            </form>
+            <ul class="user-info-setting">
+                <li class="dropdown user-profile">
+                    <a href="#" id="user-profile">
+                        <img src="../static/images/default.png">
+                        <span>root
+                        <i class="fa fa-angle-down"></i>
+                        </span>
+                    </a>
+                    <ul class="user-profile-menu">
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-edit"></i>修改密码
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-wrench"></i>设置
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-user"></i>个人信息
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-info-circle"></i>帮助
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="not">
+                                <i class="fa fa-lock"></i>退出
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="right-top-title">
+                <span>威非运营管理云平台</span>
+            </div>
+        </nav>
+        <!--right page-title-->
+        <div class="page-title">
+            <div class="breadcrumb-env"><!--面包屑导航栏-->
+                <ol class="breadcrumb bc-1">
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-home"></i>主页
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">商铺列表</a>
+                    </li>
+                    <li class="active">
+                        <strong>添加子商铺</strong>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="page-title-top">
+            <div class="top top-1">
+                <span>当前商铺：</span>
+                <span>shop1</span>
+                <a href="javascript:void(0)" id="shop_switch">[切换商铺]</a>
+            </div>
+            <div class="top top-2">
+                <span>登录用户：</span>
+                <span>bdyun</span>
+            </div>
+            <div class="top top-3" style="width: 245px;">
+                <span id="date" style="padding-right: 5px"></span>
+                <span id="weekday" style="padding-right: 5px"></span>
+                <span id="time"></span>
+            </div>
+            <div class="top top-4">
+                <a href="about:blank" style="color: #000;">关闭</a>
+            </div>
+        </div>
+        <!--切换商铺弹出框-->
+        <div class="theme-popover">
+            <div class="theme-popover-title">
+                <a href="javascript:void(0)" class="theme-popover-close" ><i class="fa fa-close"></i></a>
+                <h3>选择商铺</h3>
+            </div>
+            <ul class="theme-popover-content">
+                <li>
+                    <span>一级商铺：</span>
+                    <a class="active" href="#">shop1</a>|
+                    <a href="#">shop2</a>|
+                </li>
+                <li>
+                    <span>二级商铺：</span>
+                    <a href="#">shop1_1</a>|
+                </li>
+            </ul>
+        </div>
+        <div class="theme-popover-mask"></div>
+        <!--right content-->
+        <!--商铺列表-->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span class="panel-title">商铺列表</span>
+                <div class="panel-options">
+                    <a href="#"><i class="fa fa-minus"></i></a>
+                    <a href="#"><i class="fa fa-times"></i></a>
+                </div>
+            </div>
+            <div class="panel-body">
+                <form action="index.html" method="get" id="shopSearch">
+                    <div class="button-box">
+                        <a class="btn btn-default" href="validate+date.html" title="validate表单验证/datepicker日期">validate/datepicker</a>
+                        <a class="btn btn-default" href="倒计时swiper.html" title="倒计时/轮播swiper">倒计时/轮播</a>
+                    </div>
+                    <div class="input-group col-sm-3">
+                        <input class="form-control" name="search_name" id="search_name" placeholder="商铺名称">
+                        <span class="input-group-addon"><i class="fa fa-search" onclick="shop_search()"></i></span>
+                    </div>
+                    <label id="result" class="tip"></label>
+                </form>
+                <table class="table table-bordered table-responsive" id="shop_table">
+                    <thead>
+                        <tr>
+                            <th>编号</th>
+                            <th>商铺名</th>
+                            <th>铺主</th>
+                            <th>注册时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>bdyun</td>
+                            <td>bdyun</td>
+                            <td>2017-01-04 17:02</td>
+                            <td>
+                                <div>
+                                    <a class="btn btn-default">修改</a>
+                                    <a class="btn btn-default">信息</a>
+                                    <a class="btn btn-default">添加子商铺</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>bdyun2</td>
+                            <td>bdyun</td>
+                            <td>2017-01-04 17:02</td>
+                            <td>
+                                <div>
+                                    <a class="btn btn-default">修改</a>
+                                    <a class="btn btn-default">信息</a>
+                                    <a class="btn btn-default">添加子商铺</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>bdyun2</td>
+                            <td>bdyun</td>
+                            <td>2017-01-04 17:02</td>
+                            <td>
+                                <div>
+                                    <a class="btn btn-default">修改</a>
+                                    <a class="btn btn-default">信息</a>
+                                    <a class="btn btn-default">添加子商铺</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>bdyun2</td>
+                            <td>bdyun</td>
+                            <td>2017-01-04 17:02</td>
+                            <td>
+                                <div>
+                                    <a class="btn btn-default">修改</a>
+                                    <a class="btn btn-default">信息</a>
+                                    <a class="btn btn-default">添加子商铺</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>bdyun2</td>
+                            <td>bdyun</td>
+                            <td>2017-01-04 17:02</td>
+                            <td>
+                                <div>
+                                    <a class="btn btn-default">修改</a>
+                                    <a class="btn btn-default">信息</a>
+                                    <a class="btn btn-default">添加子商铺</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>bdyun2</td>
+                            <td>bdyun</td>
+                            <td>2017-01-04 17:02</td>
+                            <td>
+                                <div>
+                                    <a class="btn btn-default">修改</a>
+                                    <a class="btn btn-default">信息</a>
+                                    <a class="btn btn-default">添加子商铺</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>bdyun2</td>
+                            <td>bdyun</td>
+                            <td>2017-01-04 17:02</td>
+                            <td>
+                                <div>
+                                    <a class="btn btn-default">修改</a>
+                                    <a class="btn btn-default">信息</a>
+                                    <a class="btn btn-default">添加子商铺</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>bdyun2</td>
+                            <td>bdyun</td>
+                            <td>2017-01-04 17:02</td>
+                            <td>
+                                <div>
+                                    <a class="btn btn-default">修改</a>
+                                    <a class="btn btn-default">信息</a>
+                                    <a class="btn btn-default">添加子商铺</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!--分页-->
+                <ul class="pagination page-count">
+                    <li><a href="javascript:void(0)" onclick="goPage()">首页</a></li>
+                    <li><a href="javascript:void(0)" onclick="goPage()"><i class="fa fa-angle-left"></i></a></li>
+                    <li><a href="javascript:void(0)" onclick="goPage()" class="active">1</a></li>
+                    <li><a href="javascript:void(0)" onclick="goPage()">2</a></li>
+                    <li><a href="javascript:void(0)" onclick="goPage()"><i class="fa fa-angle-right"></i></a></li>
+                    <li><a href="javascript:void(0)" onclick="goPage()">尾页</a></li>
+                </ul>
+            </div>
+        </div>
+        <!--right bottom-->
+        <footer>
+            <div class="go-top">
+                <a href="javascript:void(0)">
+                    <span>回到顶部</span>
+                    <i class="fa fa-eject"></i>
+                </a>
+            </div>
+        </footer>
+    </div><!--right-->
+</div>
+</body>
+</html>
