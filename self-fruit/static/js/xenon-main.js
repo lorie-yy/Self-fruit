@@ -14,7 +14,7 @@ $(document).ready(function () {
         $(this).toggleClass("turndown");
     });
 
-    // 菜单栏Sidebar-collapsed 样式开关
+    // 菜单栏收缩到左侧，Sidebar-collapsed 样式开关
     $("a[data-toggle='sidebar']").click(function () {
         $(".sidebar-menu").toggleClass("collapsed");
     });

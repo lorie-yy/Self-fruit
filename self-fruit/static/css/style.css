@@ -176,7 +176,7 @@ ul,li{
     -o-transform: rotate(90deg);
     transform: rotate(90deg);
 }
-/*左菜单栏---collapsed*/
+/*菜单栏收缩到左侧---collapsed*/
 .sidebar-menu.collapsed{
     width:80px;
     z-index:10;
