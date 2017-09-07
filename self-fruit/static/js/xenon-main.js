@@ -7,12 +7,20 @@ $(document).ready(function () {
         $(".settings-pane").slideToggle(300)
     });
 
-    // 子菜单开关
-    $(".dropdown-toggle").click(function () {
-        $(this).next("ul").slideToggle(300);//动画时长，1000毫秒即1秒
-        $(this).siblings().next("ul").slideUp(300);
-        $(this).toggleClass("turndown");
+    // menu
+    $('#main-menu').metisMenu();
+    // 菜单点击切换到新页面后，依旧是选中时的高亮状态
+    var urlstr = location.href;
+    // alert(urlstr);
+    var urlstatus=false;
+    $(".main-menu a").each(function () {
+        if ((urlstr + '/').indexOf($(this).attr('href'))>-1 && $(this).attr('href')!=='') {
+            $(this).addClass('active'); urlstatus = true;
+        } else {
+            $(this).removeClass('active');
+        }
     });
+    if (!urlstatus) {$(".main-menu a").eq(0).addClass('active'); }
 
     // 菜单栏收缩到左侧，Sidebar-collapsed 样式开关
     $("a[data-toggle='sidebar']").click(function () {

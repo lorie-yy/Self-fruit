@@ -12,10 +12,10 @@
     <link rel="stylesheet" href="../static/css/bootstrap.min.css"><!--bootstrap响应式布局-->
     <link rel="stylesheet" href="../static/js/easydialog/easydialog.css"><!--easydialog弹出框-->
     <link rel="stylesheet" href="../static/css/fonts/fontawesome/css/font-awesome.min.css"><!--fontawesome图标字体-->
-    <link rel="stylesheet" href="../static/css/fonts/linecons/css/linecons.css"><!--linecons图标字体-->
     <link rel="stylesheet" href="../static/js/swiper/swiper-3.4.2.min.css"><!--swiper轮播-->
     <link rel="stylesheet" href="../static/js/daterangepicker/daterangepicker.css"><!--日期范围-->
     <link rel="stylesheet" href="../static/js/datetimepicker/bootstrap-datetimepicker.min.css"><!--日期时间-->
+    <link rel="stylesheet" href="../static/js/metismenu/metisMenu.css"><!--菜单-->
     <!--[if IE 7]>
     <link rel="stylesheet" href="../static/css/fonts/fontawesome/css/font-awesome-ie7.min.css">
     <![endif]-->
@@ -31,6 +31,7 @@
     <script src="../static/js/datetimepicker/bootstrap-datetimepicker.min.js"></script>
     <script src="../static/js/xenon-main.js"></script>
     <script src="../static/js/xenon-dialog.js"></script>
+    <script src="../static/js/metismenu/metisMenu.js"></script>
     <!--page-title时钟-->
     <script type="text/javascript">
         function startTime() {
@@ -169,201 +170,89 @@
                     </a>
                 </div>
             </header>
-            <ul id="main-menu" class="main-menu">
-                <li  id="index" class="active">
+            <ul id="main-menu" class="main-menu metismenu">
+                <li>
                     <a href="index.html">
                         <i class="fa fa-home"></i><!--图标-->
                         <span class="title">主页</span>
                     </a>
                 </li>
                 <!--商铺-->
-                <li id="2" class="has_sub">
-                    <a href="#" class="dropdown-toggle">
+                <li id="2">
+                    <a href="#" class="has-arrow">
                         <i class="fa fa-cog"></i>
                         <span class="title">商铺管理</span>
                     </a>
-                    <ul class="menu_sub">
+                    <ul>
                         <li id="change_password">
-                            <a href="/adminbd/change_password">
-                                <span class="title">密码修改</span>
+                            <a href="validate+date.html">
+                                <span class="title">表单验证</span>
                             </a>
                         </li>
                         <li id="shop_update">
-                            <a href="/adminbd/shop_update">
-                                <span class="title">资料更新</span>
+                            <a href="倒计时swiper.html">
+                                <span class="title">倒计时</span>
                             </a>
                         </li>
                         <li id="shop_list" class="admin">
-                            <a href="/adminbd/shop_list">
+                            <a href="#">
                                 <span class="title">商铺列表</span>
                             </a>
                         </li>
                         <li id="shopAdmin_list" class="admin">
-                            <a href="/adminbd/shopAdmin_list">
+                            <a href="#">
                                 <span class="title">商铺管理员</span>
                             </a>
                         </li>
                     </ul>
                 </li>
                 <!--设备-->
-                <li class="has_sub">
-                    <a href="#" class="dropdown-toggle">
+                <li>
+                    <a href="#" class="has-arrow">
                         <i class="fa fa-desktop"></i>
                         <span class="title">设备管理</span>
                     </a>
-                    <ul class="menu_sub">
+                    <ul>
                         <li id="ac_list">
-                            <a href="/adminbd/ac_list">
+                            <a href="#">
                                 <span class="title">AC列表</span>
                             </a>
                         </li>
                         <li id="ap_list">
-                            <a href="/adminbd/ap_list" >
+                            <a href="#">
                                 <span class="title">AP列表</span>
                             </a>
                         </li>
                         <li id="wifi_list">
-                            <a href="/adminbd/wifi_list" >
+                            <a href="#">
                                 <span class="title">热点列表</span>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <!--用户-->
-                <li class="has_sub">
-                    <a href="#" class="dropdown-toggle">
-                        <i class="fa fa-users"></i>
-                        <span class="title">用户管理</span>
-                    </a>
-                    <ul class="menu_sub">
-                        <li id="user_online_list">
-                            <a href="/adminbd/user_online_list">
-                                <span class="title">在线用户列表</span>
-                            </a>
-                        </li>
-                        <li id="user_list">
-                            <a href="/adminbd/user_list">
-                                <span class="title">历史用户列表</span>
-                            </a>
-                        </li>
-                        <li id="shop_user_list">
-                            <a href="/adminbd/shop_user_list">
-                                <span class="title">注册用户列表</span>
-                            </a>
-                        </li>
-                        <li id="shop_user_setup">
-                            <a href="/adminbd/shop_user_setup">
-                                <span class="title">在线用户组设置</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
                 <!--系统-->
-                <li class="has_sub">
-                    <a href="#" class="dropdown-toggle">
+                <li>
+                    <a href="#" class="has-arrow">
                         <i class="fa fa-cogs"></i>
                         <span class="title">系统设置</span>
                     </a>
-                    <ul class="menu_sub">
-                        <li class="has_sub">
-                            <a href="#" class="dropdown-toggle">
-                                <span class="title child">认证登录配置</span>
-                            </a>
-                            <ul class="menu_sub sub_sub">
-                                <li id="sms_template_add">
-                                    <a href="/adminbd/sms_template_add">
-                                        <span class="title">短信模板设置</span>
-                                    </a>
+                    <ul>
+                        <li>
+                            <a href="#"><span class="title">二级菜单</span></a>
+                        </li>
+                        <li>
+                            <a href="#" class="has-arrow"><span class="title">认证登录配置</span></a>
+                            <ul>
+                                <li>
+                                    <a href="#"><span class="title">短信模板设置</span></a>
                                 </li>
                                 <li id="sms_template_list">
-                                    <a href="/adminbd/sms_template_list">
-                                        <span class="title">短信模板列表</span>
-                                    </a>
+                                    <a href="#"><span class="title">短信模板列表</span></a>
                                 </li>
                                 <li id="wechat_set">
-                                    <a href="/adminbd/wechat_set">
-                                        <span class="title">微信认证设置</span>
-                                    </a>
+                                    <a href="#"><span class="title">微信认证设置</span></a>
                                 </li>
                             </ul>
-                        </li>
-                    </ul>
-                </li>
-                <!--分析-->
-                <li class="has_sub">
-                    <a href="#" class="dropdown-toggle">
-                        <i class="fa fa-line-chart"></i>
-                        <span class="title">运营分析</span>
-                    </a>
-                    <ul class="menu_sub">
-                        <li id="data_daily">
-                            <a href="/adminbd/data_daily">
-                                <span class="title">每日流量统计</span>
-                            </a>
-                        </li>
-                        <li id="data_traffic">
-                            <a href="/adminbd/data_traffic">
-                                <span class="title">广告流量统计</span>
-                            </a>
-                        </li>
-                        <li id="data_people">
-                            <a href="/adminbd/data_people">
-                                <span class="title">访客人次统计</span>
-                            </a>
-                        </li>
-                        <li id="data_frequent_customer">
-                            <a href="/adminbd/data_frequent_customer">
-                                <span class="title">熟客统计</span>
-                            </a>
-                        </li>
-                        <li id="data_detail">
-                            <a href="/adminbd/data_detail">
-                                <span class="title">细节指数统计</span>
-                            </a>
-                        </li>
-                        <li id="data_online_time">
-                            <a href="/adminbd/data_online_time">
-                                <span class="title">在线时长统计</span>
-                            </a>
-                        </li>
-                        <li id="data_ad">
-                            <a href="/adminbd/data_ad">
-                                <span class="title">广告统计</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <!--商品-->
-                <li class="has_sub">
-                    <a href="#" class="dropdown-toggle">
-                        <i class="fa fa-list"></i>
-                        <span class="title">商品管理</span>
-                    </a>
-                    <ul class="menu_sub">
-                        <li id="product_list">
-                            <a href="/adminbd/product_list">
-                                <span class="title">商品列表</span>
-                            </a>
-                        </li>
-                        <li id="order_list">
-                            <a href="/adminbd/order_list">
-                                <span class="title">订单列表</span>
-                            </a>
-                        </li>
-                        <li id="payment_result">
-                            <a href="/adminbd/payment_result">
-                                <span class="title">消费记录</span>
-                            </a>
-                        </li>
-                        <li id="smsBalance_list">
-                            <a href="/adminbd/smsBalance_list">
-                                <span class="title">短信列表</span>
-                            </a>
-                        </li>
-                        <li id="smsAccounting_list">
-                            <a href="/adminbd/smsAccounting_list">
-                                <span class="title">短信流水列表</span>
-                            </a>
                         </li>
                     </ul>
                 </li>
@@ -490,6 +379,22 @@
         </div>
         <div class="theme-popover-mask"></div>
         <!--right content-->
+        <!--highcharts-->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span class="panel-title">highcharts</span>
+                <div class="panel-options">
+                    <a href="#"><i class="fa fa-minus"></i></a>
+                    <a href="#"><i class="fa fa-times"></i></a>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div id="container"></div>
+            </div>
+        </div>
+
+
+
         <!--商铺列表-->
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -550,71 +455,6 @@
                         </tr>
                         <tr>
                             <td>3</td>
-                            <td>bdyun2</td>
-                            <td>bdyun</td>
-                            <td>2017-01-04 17:02</td>
-                            <td>
-                                <div>
-                                    <a class="btn btn-default">修改</a>
-                                    <a class="btn btn-default">信息</a>
-                                    <a class="btn btn-default">添加子商铺</a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>bdyun2</td>
-                            <td>bdyun</td>
-                            <td>2017-01-04 17:02</td>
-                            <td>
-                                <div>
-                                    <a class="btn btn-default">修改</a>
-                                    <a class="btn btn-default">信息</a>
-                                    <a class="btn btn-default">添加子商铺</a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>bdyun2</td>
-                            <td>bdyun</td>
-                            <td>2017-01-04 17:02</td>
-                            <td>
-                                <div>
-                                    <a class="btn btn-default">修改</a>
-                                    <a class="btn btn-default">信息</a>
-                                    <a class="btn btn-default">添加子商铺</a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>bdyun2</td>
-                            <td>bdyun</td>
-                            <td>2017-01-04 17:02</td>
-                            <td>
-                                <div>
-                                    <a class="btn btn-default">修改</a>
-                                    <a class="btn btn-default">信息</a>
-                                    <a class="btn btn-default">添加子商铺</a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>bdyun2</td>
-                            <td>bdyun</td>
-                            <td>2017-01-04 17:02</td>
-                            <td>
-                                <div>
-                                    <a class="btn btn-default">修改</a>
-                                    <a class="btn btn-default">信息</a>
-                                    <a class="btn btn-default">添加子商铺</a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
                             <td>bdyun2</td>
                             <td>bdyun</td>
                             <td>2017-01-04 17:02</td>
