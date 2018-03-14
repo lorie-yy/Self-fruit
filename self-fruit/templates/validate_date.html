@@ -8,7 +8,6 @@
 
     <link rel="stylesheet" href="../static/css/bootstrap.min.css"><!--bootstrap响应式布局-->
     <link rel="stylesheet" href="../static/css/fonts/fontawesome/css/font-awesome.min.css"><!--fontawesome图标字体-->
-    <link rel="stylesheet" href="../static/css/fonts/linecons/css/linecons.css"><!--fontawesome图标字体-->
     <link rel="stylesheet" href="../static/css/style.css">
 
     <script src="../static/js/jquery-3.1.0.min.js"></script><!--jquery库，是其他js文件引用的基础-->
@@ -31,6 +30,11 @@
     <script src="../static/js/datetimepicker/bootstrap-datetimepicker.min.js"></script>
     <script src="../static/js/datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
     <link rel="stylesheet" href="../static/js/datetimepicker/bootstrap-datetimepicker.min.css">
+    <!--webuploader上传-->
+    <script src="../static/js/webuploader/webuploader.js"></script>
+    <link rel="stylesheet" href="../static/js/webuploader/webuploader.css">
+
+
     <style>
         /*date-time-range*/
         .date-time-range{
@@ -112,6 +116,7 @@
 </head>
 <body>
 <div class="container">
+    <!--日期时间选择器-->
     <div class="date-time-range">
         <h3>Date Picker</h3>
         <form class="form1">
@@ -144,6 +149,7 @@
             </div>
         </form>
     </div>
+    <!--validate表单验证-->
     <div class="validate">
         <script>
             $(document).ready(function () {
@@ -228,10 +234,9 @@
                 <script>
                     _init_area()
                 </script>
-
+                <!--获取文件-->
                 <div class="input-group">
                     <span class="span-group">上传资料</span>
-                    <!--获取文件-->
                     <div class="input-box">
                         <input type="file" id="file" name="file" accept=".xls" onchange="selectFile()" class="form-control">
                         <span class="form-control" id="filename">上传资料</span>
@@ -259,6 +264,21 @@
                 }
             </script>
         </form>
+    </div>
+    <!--拖拽上传图片-->
+    <div>
+        <div class="input-group">
+            <span class="span-group">拖拽上传</span>
+            <div class="input-box">
+                <input type="file" class="form-control" id="ssi-upload" name="drag" placeholder="拖拽上传">
+            </div>
+        </div>
+        <script>
+            $(document).ready(function () {
+                $('#ssi-upload').ssi_uploader()
+
+            })
+        </script>
     </div>
     <div class="modal-footer">
         <a class="btn btn-default" onclick="history.back()">返回</a>

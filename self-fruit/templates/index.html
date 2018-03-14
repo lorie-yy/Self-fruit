@@ -1,75 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!--声明编码方式为UTF-8，防止中文乱码-->
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><!--兼容IE浏览器-->
-    <meta name="viewport" content="width=device-width, initial-scale=1"><!--自适应网页-->
+    <!--兼容IE浏览器.这样写可以达到的效果是：如果安装了GCF（谷歌内嵌浏览器框架），则使用GCF来渲染页面；如果未安装GCF，则使用最高版本的IE内核进行渲染。-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!--自适应网页.用于移动开发，让当前viewport的宽度等于设备的宽度（content中的两者同时存在才能兼容所有移动设备浏览器）-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="html 前端 js 学习">
     <meta name="description" content="此网站是汇集前端学习的宝地">
-    <link rel="icon" href="../static/images/html5_logo_512.png">
-    <title>index</title>
+    <!--网页头像图标(16*16或者32*32)-->
+    <link rel="shortcut icon" href="../static/images/medal.png">
+    <title>Self-fruits</title>
 
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css"><!--bootstrap响应式布局-->
-    <link rel="stylesheet" href="../static/js/easydialog/easydialog.css"><!--easydialog弹出框-->
-    <link rel="stylesheet" href="../static/css/fonts/fontawesome/css/font-awesome.min.css"><!--fontawesome图标字体-->
-    <link rel="stylesheet" href="../static/js/swiper/swiper-3.4.2.min.css"><!--swiper轮播-->
-    <link rel="stylesheet" href="../static/js/daterangepicker/daterangepicker.css"><!--日期范围-->
-    <link rel="stylesheet" href="../static/js/datetimepicker/bootstrap-datetimepicker.min.css"><!--日期时间-->
-    <link rel="stylesheet" href="../static/js/metismenu/metisMenu.css"><!--菜单-->
+    <!--bootstrap响应式布局-->
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <!--layui布局-->
+    <link rel="stylesheet" href="../static/js/layui/layui.css">
+    <!--layer弹出层-->
+    <link rel="stylesheet" href="../static/js/layui/css/modules/layer/default/layer.css">
+    <!--easydialog弹出框-->
+    <link rel="stylesheet" href="../static/js/easydialog/easydialog.css">
+    <!--fontawesome图标字体-->
+    <link rel="stylesheet" href="../static/css/fonts/fontawesome/css/font-awesome.min.css">
     <!--[if IE 7]>
     <link rel="stylesheet" href="../static/css/fonts/fontawesome/css/font-awesome-ie7.min.css">
     <![endif]-->
+    <!--swiper轮播-->
+    <link rel="stylesheet" href="../static/js/swiper/swiper-3.4.2.min.css">
+    <!--日期范围/日期时间-->
+    <link rel="stylesheet" href="../static/js/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="../static/js/datetimepicker/bootstrap-datetimepicker.min.css">
+    <!--菜单-->
+    <link rel="stylesheet" href="../static/js/metismenu/metisMenu.css">
+    <!--自定义样式-->
     <link rel="stylesheet" href="../static/css/style.css">
 
-    <script src="../static/js/jquery-3.1.0.min.js"></script><!--jquery库，是其他js文件引用的基础-->
-    <script src="../static/js/validate/jquery.validate.min.js"></script><!--validate表单验证-->
-    <script src="../static/js/validate/messages_zh.js"></script><!--表单验证message中文-->
+    <!--jquery库，是其他js文件引用的基础-->
+    <script src="../static/js/jquery-3.1.0.min.js"></script>
+    <!--validate表单验证/message中文-->
+    <script src="../static/js/validate/jquery.validate.min.js"></script>
+    <script src="../static/js/validate/messages_zh.js"></script>
+    <!--easydialog弹出框-->
     <script src="../static/js/easydialog/easydialog.min.js"></script>
+    <!--layui布局-->
+    <script type="text/javascript" src="../static/js/layui/layui.js"></script>
+    <script type="text/javascript" src="../static/js/layui/lay/modules/laypage.js"></script>
+    <!--layer弹出层-->
+    <script type="text/javascript" src="../static/js/layui/css/modules/layer/layer.js"></script>
+    <!--swiper轮播-->
     <script src="../static/js/swiper/swiper-3.4.2.min.js"></script>
+    <!--日期范围/日期时间-->
     <script src="../static/js/daterangepicker/moment.min.js"></script>
     <script src="../static/js/daterangepicker/daterangepicker.js"></script>
     <script src="../static/js/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+    <!--菜单-->
+    <script src="../static/js/metismenu/metisMenu.js"></script>
+    <!--自定义JS-->
     <script src="../static/js/xenon-main.js"></script>
     <script src="../static/js/xenon-dialog.js"></script>
-    <script src="../static/js/metismenu/metisMenu.js"></script>
-    <!--page-title时钟-->
-    <script type="text/javascript">
-        function startTime() {
-            var content = $('#search_name').val();
-            $('#result').html(content);
-            setTimeout("startTime()",1000); //计时，每1秒调用一次，一定要放在函数内部调用
-            /*时间*/
-            var today=new Date();
-//            console.log(new Date())
-            var h=today.getHours();
-            var min=today.getMinutes();
-            var s=today.getSeconds();
-            h=checkTime(h);                 //当小时、分钟数、秒数为个位数时前面加上0
-            min=checkTime(min);
-            s=checkTime(s);
-            function checkTime(i) {
-                if(i<10){
-                    i="0"+i;
-                }return i;
-            }
-            document.getElementById("time").innerHTML=h+":"+min+":"+s;
-            /*日期*/
-            var y=today.getFullYear();
-            var mon=today.getMonth()+1;     //月份是以数组的形式储存的[0-11]，所以需要加1
-            var date=today.getDate();
-            document.getElementById("date").innerHTML=y+"年"+mon+"月"+date+"日";
-            /*星期*/
-            var day=new Array(7);           //星期是以阿拉伯数字输出的[0-6]，需要转换成汉字
-            day[0]="星期天";
-            day[1]="星期一";
-            day[2]="星期二";
-            day[3]="星期三";
-            day[4]="星期四";
-            day[5]="星期五";
-            day[6]="星期六";
-            document.getElementById("weekday").innerHTML=day[today.getDay()]
-        }
-    </script>
     <!--shop_search搜索-->
     <script>
         function shop_search(){
@@ -81,7 +70,7 @@
             var btnFn = function () {
                 easyDialog.close();
             };
-            if(search_name == ''){
+            if(!search_name){
 //                easyDialog.open({
 //                    container : {
 //                        header : "搜索",//header：包含弹出层的标题和关闭按钮
@@ -98,6 +87,7 @@
 //                $("#easyDialogYesBtn").focus();//将光标聚焦到弹出框的确定按钮上
 //                return false;
                 ConfirmWarning("搜索","请输入商铺名称！",btnSn)
+//                layer.msg("请输入商铺名称！")
             }
             else{
                 $('#shopSearch').submit();//提交表单
@@ -113,9 +103,8 @@
             }
         }
     </script>
-    <!--goPage分页-->
 </head>
-<body onload="startTime()">
+<body>
 <!--settings pane顶部隐藏部分-->
 <div class="settings-pane" id="switch_id">
     <a href="#" class="setting-close" data-toggle="settings-pane" data-animate="true">
@@ -126,20 +115,20 @@
             <div class="col-md-4">
                 <div class="user-info">
                     <div class="user-image">
-                        <a href="/adminbd/per_information">
+                        <a href="#">
                             <img src="../static/images/default.png" class="img-responsive img-circle"
                                  style="max-height:130px; max-width:128px;" alt="user-img"/>
                         </a>
                     </div>
                     <div class="user-details">
                         <h3>
-                            <a href="/adminbd/per_information">root</a>
+                            <a href="#">root</a>
                             <!-- Available statuses: is-online, is-idle, is-busy and is-offline -->
                             <span class="user-status is-online"></span>
                         </h3>
                         <p class="user-title">欢迎root</p>
                         <div class="user-links">
-                            <a href="/adminbd/per_information" class="btn btn-primary">编辑</a>
+                            <a href="#" class="btn btn-primary">编辑</a>
                             <a href="#" class="btn btn-success" data-toggle="settings-pane" data-animate="true">合并</a>
                         </div>
                     </div>
@@ -166,35 +155,33 @@
                 <!--setting按钮-->
                 <div class="settings-icon">
                     <a href="#" data-toggle="settings-pane">
-                        <i class="linecons-cog"></i>
+                        <i class="glyphicon glyphicon-cog"></i>
                     </a>
                 </div>
             </header>
             <ul id="main-menu" class="main-menu metismenu">
                 <li>
                     <a href="index.html">
-                        <i class="fa fa-home"></i><!--图标-->
-                        <span class="title">主页</span>
+                        <i class="fa fa-home"></i><span class="title">主页</span>
                     </a>
                 </li>
                 <!--商铺-->
-                <li id="2">
-                    <a href="#" class="has-arrow">
-                        <i class="fa fa-cog"></i>
-                        <span class="title">商铺管理</span>
+                <li>
+                    <a href="" class="has-arrow">
+                        <i class="fa fa-cog"></i><span class="title">商铺管理</span>
                     </a>
                     <ul>
-                        <li id="change_password">
-                            <a href="validate+date.html">
+                        <li>
+                            <a href="validate_date.html">
                                 <span class="title">表单验证</span>
                             </a>
                         </li>
-                        <li id="shop_update">
+                        <li>
                             <a href="倒计时swiper.html">
                                 <span class="title">倒计时</span>
                             </a>
                         </li>
-                        <li id="shop_list" class="admin">
+                        <li>
                             <a href="#">
                                 <span class="title">商铺列表</span>
                             </a>
@@ -208,22 +195,21 @@
                 </li>
                 <!--设备-->
                 <li>
-                    <a href="#" class="has-arrow">
-                        <i class="fa fa-desktop"></i>
-                        <span class="title">设备管理</span>
+                    <a href="" class="has-arrow">
+                        <i class="fa fa-desktop"></i><span class="title">设备管理</span>
                     </a>
                     <ul>
-                        <li id="ac_list">
+                        <li>
                             <a href="#">
                                 <span class="title">AC列表</span>
                             </a>
                         </li>
-                        <li id="ap_list">
+                        <li>
                             <a href="#">
                                 <span class="title">AP列表</span>
                             </a>
                         </li>
-                        <li id="wifi_list">
+                        <li>
                             <a href="#">
                                 <span class="title">热点列表</span>
                             </a>
@@ -232,9 +218,8 @@
                 </li>
                 <!--系统-->
                 <li>
-                    <a href="#" class="has-arrow">
-                        <i class="fa fa-cogs"></i>
-                        <span class="title">系统设置</span>
+                    <a href="" class="has-arrow">
+                        <i class="fa fa-cogs"></i><span class="title">系统设置</span>
                     </a>
                     <ul>
                         <li>
@@ -246,10 +231,10 @@
                                 <li>
                                     <a href="#"><span class="title">短信模板设置</span></a>
                                 </li>
-                                <li id="sms_template_list">
+                                <li>
                                     <a href="#"><span class="title">短信模板列表</span></a>
                                 </li>
-                                <li id="wechat_set">
+                                <li>
                                     <a href="#"><span class="title">微信认证设置</span></a>
                                 </li>
                             </ul>
@@ -258,11 +243,11 @@
                 </li>
                 </ul>
             </div>
-        <!--菜单底部-->
+        <!--菜单底部.特殊符号代码-->
         <div style="text-align: center;color: #fff;font-size: 12px;margin-top: 30px;">
             上海中兴通讯技术股份有限公司版权所有 &copy;2015
         </div>
-    </div><!--左侧菜单-->
+    </div>
     <!--right-->
     <div class="main-content">
         <!--right top-->
@@ -285,35 +270,23 @@
                 <li class="dropdown user-profile">
                     <a href="#" id="user-profile">
                         <img src="../static/images/default.png">
-                        <span>root
-                        <i class="fa fa-angle-down"></i>
-                        </span>
+                        <span>root<i class="fa fa-angle-down"></i></span>
                     </a>
                     <ul class="user-profile-menu">
                         <li>
-                            <a href="#">
-                                <i class="fa fa-edit"></i>修改密码
-                            </a>
+                            <a href="#"><i class="fa fa-edit"></i>修改密码</a>
                         </li>
                         <li>
-                            <a href="#">
-                                <i class="fa fa-wrench"></i>设置
-                            </a>
+                            <a href="#"><i class="fa fa-wrench"></i>设置</a>
                         </li>
                         <li>
-                            <a href="#">
-                                <i class="fa fa-user"></i>个人信息
-                            </a>
+                            <a href="#"><i class="fa fa-user"></i>个人信息</a>
                         </li>
                         <li>
-                            <a href="#">
-                                <i class="fa fa-info-circle"></i>帮助
-                            </a>
+                            <a href="#"><i class="fa fa-info-circle"></i>帮助</a>
                         </li>
                         <li>
-                            <a href="#" class="not">
-                                <i class="fa fa-lock"></i>退出
-                            </a>
+                            <a href="#" class="not"><i class="fa fa-lock"></i>退出</a>
                         </li>
                     </ul>
                 </li>
@@ -324,12 +297,11 @@
         </nav>
         <!--right page-title-->
         <div class="page-title">
-            <div class="breadcrumb-env"><!--面包屑导航栏-->
+            <!--面包屑导航栏-->
+            <div class="breadcrumb-env">
                 <ol class="breadcrumb bc-1">
                     <li>
-                        <a href="#">
-                            <i class="fa fa-home"></i>主页
-                        </a>
+                        <a href="#"><i class="fa fa-home"></i>主页</a>
                     </li>
                     <li>
                         <a href="#">商铺列表</a>
@@ -350,10 +322,8 @@
                 <span>登录用户：</span>
                 <span>bdyun</span>
             </div>
-            <div class="top top-3" style="width: 245px;">
+            <div class="top top-3">
                 <span id="date" style="padding-right: 5px"></span>
-                <span id="weekday" style="padding-right: 5px"></span>
-                <span id="time"></span>
             </div>
             <div class="top top-4">
                 <a href="about:blank" style="color: #000;">关闭</a>
@@ -378,6 +348,7 @@
             </ul>
         </div>
         <div class="theme-popover-mask"></div>
+
         <!--right content-->
         <!--highcharts-->
         <div class="panel panel-default">
@@ -407,7 +378,7 @@
             <div class="panel-body">
                 <form action="index.html" method="get" id="shopSearch">
                     <div class="button-box">
-                        <a class="btn btn-default" href="validate+date.html" title="validate表单验证/datepicker日期">validate/datepicker</a>
+                        <a class="btn btn-default" href="validate_date.html" title="validate表单验证/datepicker日期">validate/datepicker</a>
                         <a class="btn btn-default" href="倒计时swiper.html" title="倒计时/轮播swiper">倒计时/轮播</a>
                     </div>
                     <div class="input-group col-sm-3">
@@ -416,7 +387,57 @@
                     </div>
                     <label id="result" class="tip"></label>
                 </form>
-                <table class="table table-bordered table-responsive" id="shop_table">
+                <script>
+                    //使用for循环，给table添加动态数据
+                    $(document).ready(function () {
+                        var id=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
+                        var shopname=[
+                            'bdyun1','bdyun2','bdyun3','bdyun4','bdyun5','bdyun6','bdyun7','bdyun8',
+                            'bdyun9','bdyun10','bdyun11','bdyun12','bdyun13','bdyun14','bdyun15','bdyun16'];
+                        var shopmanager=[
+                            'owner1','owner2','owner3','owner4','owner5','owner6','owner7','owner8',
+                            'owner9','owner10','owner11','owner12','owner13','owner14','owner15','owner16'];
+                        //调用date格式，自定义format("yyyy-MM-dd EEE hh:mm:ss");
+                        var time=(new Date()).format("yyyy年MM月dd日 星期E hh:mm:ss");
+//                        console.log(time);
+                        var addItem=[];
+                        for (var i = 0; i < id.length; i++) {
+                            addItem +=
+                                '<tr>' +
+                                    '<td>'+id[i]+'</td>' +
+                                    '<td>'+shopname[i]+'</td> ' +
+                                    '<td>'+shopmanager[i]+'</td> ' +
+                                    '<td>'+time+'</td> ' +
+                                    '<td> ' +
+                                        '<div> ' +
+                                            '<a class="btn btn-default btn-xs">修改</a> ' +
+                                            '<a class="btn btn-default btn-xs">信息</a> ' +
+                                            '<a class="btn btn-default btn-xs">添加子商铺</a> ' +
+                                        '</div> ' +
+                                    '</td> ' +
+                                '</tr>';
+                        }
+//                        alert(addItem);
+                        document.getElementById("addItem").innerHTML=addItem;
+
+                        //分页展示table列表
+                        layer.msg('hhhhhh');
+                        layui.use('laypage', function(){
+                            var laypage = layui.laypage;
+                            laypage.render({
+                                elem: 'demo7'
+                                ,count: addItem.length
+                                ,curr: location.hash.replace('#!fenye=', '1') //获取起始页
+                                ,hash: 'fenye' //自定义hash值
+                                ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                                ,jump: function(obj){
+                                    window.location.href="index.html#!fenye=1"
+                                }
+                            });
+                        })
+                    })
+                </script>
+                <table class="table table-bordered table-condensed table-striped table-hover" id="shop_table">
                     <thead>
                         <tr>
                             <th>编号</th>
@@ -426,58 +447,19 @@
                             <th>操作</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>bdyun</td>
-                            <td>bdyun</td>
-                            <td>2017-01-04 17:02</td>
-                            <td>
-                                <div>
-                                    <a class="btn btn-default">修改</a>
-                                    <a class="btn btn-default">信息</a>
-                                    <a class="btn btn-default">添加子商铺</a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>bdyun2</td>
-                            <td>bdyun</td>
-                            <td>2017-01-04 17:02</td>
-                            <td>
-                                <div>
-                                    <a class="btn btn-default">修改</a>
-                                    <a class="btn btn-default">信息</a>
-                                    <a class="btn btn-default">添加子商铺</a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>bdyun2</td>
-                            <td>bdyun</td>
-                            <td>2017-01-04 17:02</td>
-                            <td>
-                                <div>
-                                    <a class="btn btn-default">修改</a>
-                                    <a class="btn btn-default">信息</a>
-                                    <a class="btn btn-default">添加子商铺</a>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
+                    <tbody id="addItem"></tbody>
                 </table>
 
                 <!--分页-->
-                <ul class="pagination page-count">
-                    <li><a href="javascript:void(0)" onclick="goPage()">首页</a></li>
-                    <li><a href="javascript:void(0)" onclick="goPage()"><i class="fa fa-angle-left"></i></a></li>
-                    <li><a href="javascript:void(0)" onclick="goPage()" class="active">1</a></li>
-                    <li><a href="javascript:void(0)" onclick="goPage()">2</a></li>
-                    <li><a href="javascript:void(0)" onclick="goPage()"><i class="fa fa-angle-right"></i></a></li>
-                    <li><a href="javascript:void(0)" onclick="goPage()">尾页</a></li>
-                </ul>
+                <!--<ul class="pagination page-count">-->
+                    <!--<li><a href="javascript:void(0)" onclick="goPage()">首页</a></li>-->
+                    <!--<li><a href="javascript:void(0)" onclick="goPage()"><i class="fa fa-angle-left"></i></a></li>-->
+                    <!--<li><a href="javascript:void(0)" onclick="goPage()" class="active">1</a></li>-->
+                    <!--<li><a href="javascript:void(0)" onclick="goPage()">2</a></li>-->
+                    <!--<li><a href="javascript:void(0)" onclick="goPage()"><i class="fa fa-angle-right"></i></a></li>-->
+                    <!--<li><a href="javascript:void(0)" onclick="goPage()">尾页</a></li>-->
+                <!--</ul>-->
+                <div id="demo7"></div>
             </div>
         </div>
         <!--right bottom-->

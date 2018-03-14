@@ -1,6 +1,7 @@
 html,body{
     height: 100%;
-    font-family: 微软雅黑;
+    /*font-family属性应该设置几个字体名称作为一种"后备"机制，如果浏览器不支持第一种字体，他将尝试下一种字体。最后的sans-serif一般是所有电脑都有的。*/
+    font-family: Arimo,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 *{
     padding:0;
@@ -74,21 +75,17 @@ ul,li{
 }
 
 
-/*左菜单栏部分*/
+/*左菜单栏头部*/
 .sidebar-menu{
     display: table-cell;
     background-color:#3d86d8;
-    width: 340px;
+    width: 25%;
     z-index: 1;
     height:auto;
 }
 .sidebar-menu .sidebar-menu-inner header{
     margin:0;
     padding:30px 10% 0 15%;
-}
-
-.sidebar-menu .log{
-    float: left;
 }
 .sidebar-menu .logo-expanded{
     display: block;
@@ -100,19 +97,18 @@ ul,li{
     font-size:20px;
     text-decoration: none;
 }
-/*图标*/
+/*logo右侧图标*/
 .sidebar-menu .settings-icon{
     float: right;
     position: relative;
     top:-90px;
 }
-.sidebar-menu .linecons-cog{
+.sidebar-menu .settings-icon .glyphicon-cog{
     line-height: 1;
     font-size: 20px;
     color: #979898;
-
 }
-.sidebar-menu .linecons-cog:hover{
+.sidebar-menu .settings-icon .glyphicon-cog:hover{
     color: #ffffff;
 }
 
@@ -151,21 +147,12 @@ ul,li{
 }
 /*菜单栏收缩到左侧---collapsed*/
 .sidebar-menu.collapsed{
-    width:80px;
+    width:10%;
     z-index:10;
     overflow: visible;
 }
 .sidebar-menu.collapsed .logo-env{
     padding: 61px 0;
-}
-.sidebar-menu.collapsed .sub_sub{
-    position: absolute;
-    left:150px;
-    z-index: 2;/*很重要 不然显示不出*/
-    background-color: #3d86d8;
-    width:150px;
-    margin-top:-44px;
-    padding-left:0;
 }
 .sidebar-menu.collapsed .main-menu{
     margin-left: 0;
@@ -174,13 +161,19 @@ ul,li{
 .sidebar-menu.collapsed .main-menu li{
     text-align: center;
 }
-.sidebar-menu.collapsed .main-menu a:hover>.menu_sub,
-.sidebar-menu.collapsed .main-menu a:hover>ul{
-    display: block;
+.sidebar-menu.collapsed .main-menu>li>a>span{
+    display: none;
+}
+/*.sidebar-menu.collapsed .main-menu a:hover>.menu_sub,*/
+/*.sidebar-menu.collapsed .main-menu a:hover>ul{*/
+    /*display: block;*/
+/*}*/
+.sidebar-menu.collapsed .main-menu ul li ul li a{
+    padding-left:40px;
 }
 .sidebar-menu.collapsed .main-menu>li>ul,.sidebar-menu.collapsed .main-menu>li>ul{
     position: absolute;
-    left:80px;
+    left:10%;
     z-index: 2;/*很重要 不然显示不出*/
     background-color: #3d86d8;
     width:150px;
@@ -191,6 +184,12 @@ ul,li{
 }
 .sidebar-menu.collapsed ul li a i{
     font-size: 16px;
+}
+.sidebar-menu.collapsed .logo{
+    display: none;
+}
+.sidebar-menu.collapsed .settings-icon{
+    display: none;
 }
 
 
@@ -499,48 +498,19 @@ ul,li{
 .panel-default .panel-body .button-box>a:hover{
     background-color:#3d86d8 ;
 }
-
-.panel-default .panel-body .table-bordered{
-    font-size:12px;
-    border-color: #eeeeee;
+/*table */
+.table{
+    color: #908e8e;
+    font-size: 12px;
 }
 .table>thead>tr>th{
-    color: #064d86;
-    padding:5px;
-    border-color: #eeeeee;
+    color: rgb(58, 88, 152);
 }
-.table>tbody{
-    color: #908e8e;
+.table>thead>tr>th,.table>tbody>tr>td{
+    vertical-align: middle;
+    text-align: center;
 }
 
-.table>tbody>tr:nth-child(odd){
-    background-color: #f1f1f1;
-}
-.table>tbody>tr>td{
-    padding:5px;
-    vertical-align: middle;
-    border-color: #eeeeee;
-}
-.table>tbody>tr>td>div>a{
-    color: #000;
-    float: left;
-    padding: 3px 10px;
-    margin:0;
-    border-radius: 0;
-    border-collapse: collapse;
-    border:1px solid #eeeeee;
-    font-size: 13px;
-}
-.table>tbody>tr>td>div>a:hover{
-    border-color: #eeeeee;
-}
-.table>tbody>tr>td>div>a:last-child{
-    background-color: #2196F3;
-    color: #fff;
-}
-.table>tbody>tr>td>div>a:last-child:hover{
-    background-color: #3d86d8;
-}
 .btn-submit{
     height:36px;
     border-radius:0;
